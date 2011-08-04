@@ -1,0 +1,65 @@
+body{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+}
+
+#content{
+text-align:center;
+margin:auto;
+width:600px;
+}
+
+#header{
+margin-top:30px;
+border-bottom: 1px #DFDFDF solid;
+padding-bottom:3px;
+}
+
+h2{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+margin:0;
+}
+
+h4{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+margin:0;
+font-size:.9em;
+font-weight:normal;
+}
+
+#calendar{
+margin-top:10px;
+}
+
+.whatDay{
+border-bottom:#000000 solid 1px;
+text-align:left;
+margin-top:8px;
+font-size:.8em;
+}
+.whatShow{
+text-align:left;
+font-size:.7em;
+margin:3px;
+}
+
+a:active, a:link, a:visited{
+color: #3972C8;
+text-decoration: none;
+font-weight: bold;
+}
+
+a:hover{
+color:#ff0000;
+
+}
+
+#footer{
+margin:auto;
+margin-top:30px;
+font-size:.6em;
+border-top: 1px #DFDFDF solid;
+padding-top:3px;
+}
