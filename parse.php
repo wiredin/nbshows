@@ -16,7 +16,7 @@ function get_and_sort_shows()
 
 
     $shows =array(array('title'=>null,'date'=>null,'time'=>null,'where'=>null,'full_date'=>null));
-    $i=1;
+    $i=0;
     $k=0;
     while($title = $xml->entry[$i]->title)
     {
@@ -30,7 +30,7 @@ function get_and_sort_shows()
 	$where = str_replace($removables, '', ($s_items[12].' '.$s_items[13].' '.$s_items[14].' '.$s_items[15]));
         $full_date=strtotime($full_date);
         $now = getdate();
-        if(($full_date) && ($full_date >= $now[0]))
+        if(($full_date) && ($full_date >= $now[0]-100000))
 	{
 	    $shows[$k]['title'] = $title;
 	    $shows[$k]['date'] = $when;
