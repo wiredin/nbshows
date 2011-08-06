@@ -33,6 +33,12 @@ font-weight:normal;
 margin-top:10px;
 }
 
+#about{
+font-size:.8em;
+text-align:left;
+margin-top:10px;
+}
+
 .whatDay{
 border-bottom:#000000 solid 1px;
 text-align:left;
