@@ -69,3 +69,27 @@ font-size:.6em;
 border-top: 1px #DFDFDF solid;
 padding-top:3px;
 }
+
+
+#gate{
+height:50%;
+margin-top:120px;
+text-align:center;
+}
+
+#gate_door{
+margin:auto;
+height:80px;
+}
+
+#gate .enter{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+font-size:inherit;
+padding:0;
+margin:0;
+}
+
+#riddle{
+margin-top:2px;
+}
