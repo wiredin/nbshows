@@ -20,14 +20,23 @@ function get_and_sort_shows()
     $k=0;
     while($title = $xml->entry[$i]->title)
     {
+        
 	$s_items = split(' ',$xml->entry[$i]->summary);
 
 	$days = array('Mon'=>'Monday', 'Tue'=>'Tuesday', 'Wed'=>'Wednesday', 'Thu'=>'Thursday', 'Fri'=>'Friday','Sat'=>'Saturday', 'Sun'=>'Sunday');
-	$when = rtrim($days[$s_items[1]].', '.$s_items[2].' '.$s_items[3],',');
-	$full_date = $s_items[2].' '.$s_items[3].' '.$s_items[4];
+ 	$when = rtrim($days[$s_items[1]].', '.$s_items[2].' '.$s_items[3],',');
+ 	$full_date = $s_items[2].' '.$s_items[3].' '.$s_items[4];
 	$time = $s_items[5];
+        if($title == 'Mattress'){
+
+        }
 	$removables = array('<br>','Event', 'Status', 'confirmed', ':');
 	$where = str_replace($removables, '', ($s_items[12].' '.$s_items[13].' '.$s_items[14].' '.$s_items[15]));
+        if($where=='   '){
+	    $where = str_replace($removables, '', ($s_items[8].' '.$s_items[9]));
+         }
+
+ 
         $full_date=strtotime($full_date);
         $now = getdate();
         if(($full_date) && ($full_date >= $now[0]-100000))
