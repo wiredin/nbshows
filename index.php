@@ -4,7 +4,6 @@ require_once('header.php');
 require_once('parse.php');
 $shows = get_and_sort_shows();
 ?>
-
     <div id="calendar">
         <?php
         foreach($shows as $show){

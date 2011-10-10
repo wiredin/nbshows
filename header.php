@@ -20,6 +20,10 @@
 </head>
 <body>
     <div id="content">
+    <div style="font-size:.8em; text-align:center;">
+<a href="http://www.change.org/petitions/ask-the-us-dept-of-justice-to-investigate-the-police-involved-shooting-of-barry-deloatch">Ask the US Dept of Justice to investigate the Police-Involved shooting of Barry Deloatch.</a>
+</div>
+
     <div id="header"><h2><a href="<?php echo $path; ?>"><img src="<?php echo $path ?>images/nbshows_evan_150.png" alt="NB Shows Logo"></a></h2><h4>The Unofficial NB Show Calendar</h4></div>
 
 
