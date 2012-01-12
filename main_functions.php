@@ -1,6 +1,5 @@
 <?php
 
-
 function openDB(){
     $dbhost = "db.nbshows.org";
     $dbuser = "mikeweiss";
@@ -19,6 +18,7 @@ function openDB(){
 function closeDB($link){
      mysql_close($link);
 }
+
 
 
 class MysqlStringEscaper
@@ -46,13 +46,35 @@ function get_bands_array($row){
     $lineup = explode(",",$row['order']);
     $names = explode(",",$row['bands']);
     $websites = explode(",",$row['websites']);
+    $locations = explode(",",$row['locations']);
     
     for($i=0; $i<count($lineup); $i++){
-         $bands[$lineup[$i]] = array("name"=>$names[$i],"website"=>$websites[$i]); 
+         $bands[$lineup[$i]] = array("name"=>$names[$i],"website"=>$websites[$i], "location"=>$locations[$i]); 
     } 
 
     sort($bands);
     return $bands;
 }
 
+function print_bands($bands){
+foreach($bands as $band){
+    if($band['website']!='blank'){ ?>
+	<a target="_blank" href="http://<?php echo $band['website']; ?>"><?php echo $band['name'].' ';
+        if(($GLOBALS['location_abbv']!=$band['location'])&&(!empty($band['location'])))
+            echo '('.$band['location'].')'; ?></a>       
+    <?php  }else{   
+
+         echo ' <strong>'.$band['name'].' ';
+ 
+
+        if(($GLOBALS['location_abbv']!=$band['location'])&&(!empty($band['location'])))
+            echo '('.$band['location'].') ';       
+        echo '</strong>';
+           }
+
+    $c++;
+    echo ($c == count($bands) ? "": "//");    
+    } 
+$c = 0;
+}
 

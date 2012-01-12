@@ -3,10 +3,18 @@ font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 color: #444;
 }
 
+h3{
+font-size:1em;
+}
+
 #content{
 text-align:center;
 margin:auto;
 width:600px;
+}
+
+#content h3{
+text-align:left;
 }
 
 #header{
@@ -69,3 +77,48 @@ font-size:.6em;
 border-top: 1px #DFDFDF solid;
 padding-top:3px;
 }
+
+#fakeLink{
+cursor:pointer;
+font-weight:bold;
+color: #3972C8;
+}
+
+.submitLayout{
+margin-top:10px;
+font-size:.8em;
+}
+
+#submit dl{
+display:block;
+}
+
+#submit dt{
+float:left;
+clear:left;
+width:150px;
+text-align:right;
+padding-top:6px;
+}
+
+
+#submit dd{
+float:left;
+width:400px;
+text-align:left;
+margin:0px 0px 0px 5px;
+padding:0px 0px 0px 0px;
+}
+
+#submit p{
+margin:0px 0px 0px 0px;
+}
+
+.text_input {
+border: 1px solid #9C9C9C;
+font-size:.9em;
+width:300px;
+padding:.3em;
+}
+
+
