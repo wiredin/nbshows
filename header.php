@@ -3,7 +3,7 @@
 <head>
     <title>NB Shows</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" > 
-    <LINK href="<?php echo $path ?>styles.css" rel="stylesheet" type="text/css">
+    <LINK href="<?php echo $path ?>stylesheets/styles.css" rel="stylesheet" type="text/css">
     <link rel="icon" 
       type="image/png" 
       href="favicon.ico">
@@ -21,6 +21,29 @@
     })();
 
     </script>
+
+<!--list a show custom JS-->
+<?php if($page=="listashow"){ ?>
+<script type="text/javascript" src="<?php echo $path ?>javascripts/prototype.js"></script>
+<script type="text/javascript" src="<?php echo $path ?>javascripts/calendarview.js"></script>
+ <script>
+      function setupCalendars() {
+
+        // Popup Calendar
+        Calendar.setup(
+          {
+            dateField: 'selected_date',
+            triggerElement: 'selected_date'
+          }
+        )
+      }
+
+      Event.observe(window, 'load', function() { setupCalendars() })
+    </script>
+<?php
+}
+?>
+<!-- end list a show custom JS-->
 </head>
 <body>
     <div id="content">

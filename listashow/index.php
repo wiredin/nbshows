@@ -1,11 +1,15 @@
 <?php
 $path='../';
+$page = "listashow";
 require_once('../main_functions.php');
 require_once('../config_variables.php');
 require_once('../header.php');
 ?>
 
 <script type="text/javascript" src="add_bands.js"></script>
+<link rel="stylesheet" type="text/css" href="../stylesheets/calendarview.css" />
+
+
 <h3>List a show</h3>
 <div id="submit">
 <dl border=1 class="submitLayout">
@@ -17,9 +21,37 @@ require_once('../header.php');
 </p>
 </dd>
 
+<dt>Date:</dt>
+<dd><input name="show_date" class="date_input" id="selected_date" type="text"value="<?php echo get_date_now(); ?>">
+<select name="show_time"> 
+<option value="720">12:00 pm</option>
+<option value="750">12:30 pm</option>
+<option value="780">1:00 pm</option>
+<option value="810">1:30 pm</option>
+<option value="840">2:00 pm</option>
+<option value="870">2:30 pm</option>
+<option value="900">3:00 pm</option>
+<option value="930">3:30 pm</option>
+<option value="960">4:00 pm</option>
+<option value="990">4:30 pm</option>
+<option value="1020">5:00 pm</option>
+<option value="1050">5:30 pm</option>
+<option value="1080">6:00 pm</option>
+<option value="1110">6:30 pm</option>
+<option value="1140">7:00 pm</option>
+<option value="1170">7:30 pm</option>
+<option value="1200">8:00 pm</option>
+<option value="1230">8:30 pm</option>
+<option value="1260">9:00 pm</option>
+<option value="1290">9:30 pm</option>
+<option value="1320">10:00 pm</option>
+<option value="1350">10:30 pm</option>
+<option value="1380">11:00 pm</option>
+<option value="1410">11:30 pm</option>
+</select>
+</dd>
 
-
-
+<h5>Headlining band</h5>
 <dt>Band 1</dt>
 <dd><input type="text" value="" name="band_name[]" class="text_input"> Headliner!</dd>
 
@@ -29,7 +61,7 @@ require_once('../header.php');
 
 
 <dt>Location</dt>
-<dd><input type="text" value="" name="band_location[]" class="location_input" maxlength="2"> (State) or "NB" for New Brunswick band</dd>
+<dd><input type="text" value="" name="band_location[]" class="location_input" maxlength="2"> (State) or "NB" for New Brunswick</dd>
 
 <dt>Band 2</dt>
 <dd><input type="text" value="" name="band_name[]" class="text_input"></dd>

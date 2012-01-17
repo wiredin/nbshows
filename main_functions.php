@@ -78,3 +78,6 @@ foreach($bands as $band){
 $c = 0;
 }
 
+function get_date_now(){
+    return date("m/j/Y");
+}
