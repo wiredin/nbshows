@@ -55,17 +55,25 @@ function get_date_now(){
 
 
 function get_bands_array($row){
-    $lineup = explode(",",$row['order']);
+    $lineups = explode(",",$row['order']);
     $names = explode(",",$row['bands']);
     $websites = explode(",",$row['websites']);
     $locations = explode(",",$row['locations']);
-    
-    for($i=0; $i<count($lineup); $i++){
-         $bands[$lineup[$i]] = array("name"=>$names[$i],"website"=>$websites[$i], "location"=>$locations[$i]); 
-    } 
 
-    sort($bands);
+    
+    for($i=0; $i<count($lineups); $i++){
+         $bands[$i] = array("name"=>$names[$i],"website"=>$websites[$i], "location"=>$locations[$i],"lineup"=>$lineups[$i]); 
+    }
+    usort($bands,"cmp_bands");
     return $bands;
+}
+
+function cmp_bands($a,$b){
+    if($a['lineup'] == $b['lineup']){
+        return 0;
+    }
+
+     return ($a['lineup'] < $b['lineup']) ? -1 : 1;
 }
 
 function print_bands($bands){
