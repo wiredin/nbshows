@@ -1,0 +1,183 @@
+body{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+}
+
+
+#content{
+text-align:center;
+margin:auto;
+width:600px;
+}
+
+#content h3{
+text-align:left;
+}
+
+#content h5{
+text-align:left;
+padding:0px 0px 0px 0px;
+margin:0px 0px 7px 60px;
+}
+
+#header{
+margin-top:30px;
+border-bottom: 1px #DFDFDF solid;
+padding-bottom:3px;
+}
+
+h2{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+margin:0;
+}
+
+h3{
+font-size:1em;
+}
+
+h4{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+color: #444;
+margin:0;
+font-size:.9em;
+font-weight:normal;
+}
+
+h5{
+font-size:1em;
+
+}
+
+#calendar{
+margin-top:10px;
+}
+
+#about{
+font-size:.8em;
+text-align:left;
+margin-top:10px;
+}
+
+.whatDay{
+border-bottom:#000000 solid 1px;
+text-align:left;
+margin-top:8px;
+font-size:.8em;
+}
+.whatShow{
+text-align:left;
+font-size:.7em;
+margin:3px;
+}
+
+a:active, a:link, a:visited{
+color: #3972C8;
+text-decoration: none;
+font-weight: bold;
+}
+
+a:hover{
+color:#ff0000;
+
+}
+
+#footer{
+margin:auto;
+margin-top:30px;
+font-size:.6em;
+border-top: 1px #DFDFDF solid;
+padding-top:3px;
+}
+
+#fakeLink{
+cursor:pointer;
+font-weight:bold;
+color: #3972C8;
+}
+
+#submit{
+font-size:.8em;
+}
+
+#topForm{
+margin-top:10px;
+}
+
+
+#submit dl{
+display:block;
+}
+
+#topForm dt{
+float:left;
+clear:left;
+width:150px;
+text-align:right;
+padding-top:6px;
+color: #696969;
+}
+
+
+#topForm dd{
+float:left;
+width:400px;
+text-align:left;
+margin:0px 0px 5px 5px;
+padding:0px 0px 0px 0px;
+}
+
+#topForm p{
+margin:0px 0px 0px 0px;
+}
+
+
+#bandsForm dt{
+float:left;
+clear:left;
+width:150px;
+text-align:right;
+padding-top:6px;
+color: #696969;
+}
+
+
+#bandsForm dd{
+float:left;
+width:400px;
+text-align:left;
+margin:0px 0px 1px 5px;
+padding:0px 0px 0px 0px;
+}
+
+#bandsForm p{
+margin:0px 0px 0px 0px;
+}
+
+.text_input {
+border: 1px solid #9C9C9C;
+font-size:.9em;
+width:300px;
+padding:.3em;
+}
+
+.location_input{
+border: 1px solid #9C9C9C;
+font-size:.9em;
+width:20px;
+padding:.3em;
+
+}
+
+.date_input{
+border: 1px solid #9C9C9C;
+font-size:.9em;
+width:80px;
+padding:.3em;
+}
+
+.band_num{
+font-size:1.1em;
+font-weight:bold;
+color:#696969
+}

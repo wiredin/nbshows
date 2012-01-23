@@ -42,6 +42,18 @@ function pretty_time($DateTime){
     }
 }
 
+function sql_datetime($prettyDate, $prettyTime){
+    $date_time = date_create_from_format('m/j/Y', $prettyDate);
+    $date_time = date_format($date_time, 'Y-m-d');
+    $date_time = $date_time.' '.$prettyTime;
+    return $date_time; 
+}
+
+function get_date_now(){
+    return date("m/j/Y");
+}
+
+
 function get_bands_array($row){
     $lineup = explode(",",$row['order']);
     $names = explode(",",$row['bands']);
@@ -78,6 +90,3 @@ foreach($bands as $band){
 $c = 0;
 }
 
-function get_date_now(){
-    return date("m/j/Y");
-}
