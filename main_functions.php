@@ -50,7 +50,7 @@ function sql_datetime($prettyDate, $prettyTime){
 }
 
 function get_date_now(){
-    return date("m/j/Y");
+    return date("m/d/Y");
 }
 
 
@@ -79,17 +79,16 @@ function cmp_bands($a,$b){
 function print_bands($bands){
 foreach($bands as $band){
     if($band['website']!='blank'){ ?>
-	<a target="_blank" href="http://<?php echo $band['website']; ?>"><?php echo $band['name'].' ';
+	<a target="_blank" href="http://<?php echo $band['website']; ?>"><?php echo $band['name'].'</a> ';
         if(($GLOBALS['location_abbv']!=$band['location'])&&(!empty($band['location'])))
-            echo '('.$band['location'].')'; ?></a>       
-    <?php  }else{   
+            echo ' ('.$band['location'].') '; 
+         }else{   
 
-         echo ' <strong>'.$band['name'].' ';
+         echo ' <strong>'.$band['name'].'</strong> ';
  
 
         if(($GLOBALS['location_abbv']!=$band['location'])&&(!empty($band['location'])))
             echo '('.$band['location'].') ';       
-        echo '</strong>';
            }
 
     $c++;
@@ -98,3 +97,47 @@ foreach($bands as $band){
 $c = 0;
 }
 
+function remove_http($url = '')
+{
+     return(str_replace(array('http://','https://'), '', $url));
+}
+
+
+//provided by doob_ at gmx dot de  http://www.php.net/manual/en/function.checkdate.php#87250
+function check_date($date) {
+    if(strlen($date) == 10) {
+        $pattern = '/\.|\/|-/i';    // . or / or -
+        preg_match($pattern, $date, $char);
+        
+        $array = preg_split($pattern, $date, -1, PREG_SPLIT_NO_EMPTY); 
+        
+        if(strlen($array[2]) == 4) {
+            // dd.mm.yyyy || dd-mm-yyyy
+            if($char[0] == "."|| $char[0] == "-") {
+                $month = $array[1];
+                $day = $array[0];
+                $year = $array[2];
+            }
+            // mm/dd/yyyy    # Common U.S. writing
+            if($char[0] == "/") {
+                $month = $array[0];
+                $day = $array[1];
+                $year = $array[2];
+            }
+        }
+        // yyyy-mm-dd    # iso 8601
+        if(strlen($array[0]) == 4 && $char[0] == "-") {
+            $month = $array[1];
+            $day = $array[2];
+            $year = $array[0];
+        }
+        if(checkdate($month, $day, $year)) {    //Validate Gregorian date
+            return TRUE;
+        
+        } else {
+            return FALSE;
+        }
+    }else {
+        return FALSE;    // more or less 10 chars
+    }
+}

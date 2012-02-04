@@ -3,6 +3,9 @@
 require_once('../main_functions.php');
 require_once('../config_variables.php');
 
+
+
+
 openDB();
 
 $escpMe = new MysqlStringEscaper;
@@ -26,18 +29,22 @@ while(!empty($_POST['band_name'][$bandCount])){
     if(empty($_POST['band_website'][$bandCount])|| $_POST['band_website'][$bandCount]==' '){
         $band_website = "'blank'";
     }else{
+
         $band_website = "'".$escpMe->$_POST['band_website'][$bandCount]."'";
+        $band_website = remove_http($band_website); //remove http if entered
+               
     }
-    $query = "INSERT INTO `bands` (`band_name`,`website`,`location`) VALUES('".$escpMe->$_POST['band_name'][$bandCount]."',$band_website,'".$escpMe->$_POST['band_location'][$bandCount]."');";
+
+
+    //fix caps of band names
+    $band_name = ucwords(strtolower($escpMe->$_POST['band_name'][$bandCount]));
+    
+    $query = "INSERT INTO `bands` (`band_name`,`website`,`location`) VALUES('$band_name',$band_website,'".$escpMe->$_POST['band_location'][$bandCount]."');";
     mysql_query($query);
     $band_id[$bandCount] = mysql_insert_id();
-    echo $query;
-    echo '<br>';
-    echo mysql_error();
-    echo '<br>';
-    //if band already exhists
+    //if band already exists
     if(mysql_error()){
-         $query = "SELECT `band_id` FROM `bands` WHERE website='".$escpMe->$_POST['band_website'][$bandCount]."' AND band_name='".$escpMe->$_POST['band_name'][$bandCount]."';";
+         $query = "SELECT `band_id` FROM `bands` WHERE website='".$escpMe->$_POST['band_website'][$bandCount]."' AND band_name='$band_name';";
          $results = mysql_query($query);
          $bd = mysql_fetch_array($results);
          $band_id[$bandCount] = $bd['band_id']; 
@@ -46,7 +53,8 @@ while(!empty($_POST['band_name'][$bandCount])){
 }
 
 //keep track of who is submitting the show for security purposes
-$query = "INSERT INTO `submitters` (`ip_address`) VALUES('".$_SERVER['REMOTE_ADDR']."');";
+$query = "INSERT INTO `submitters` (`ip_address`,`submitter_email`) VALUES('".$_SERVER['REMOTE_ADDR']."','".$escpMe->$_POST['your_email']."');";
+
 mysql_query($query);
 $submitter_id = mysql_insert_id();
 
@@ -62,5 +70,7 @@ for($i=0; $i<$bandCount; $i++){
     $query = "INSERT INTO `show_bands` (`band_id`,`show_id`,`order`) VALUES('$band_id[$i]','$show_id','$i');";
     mysql_query($query);
 }
+
+header("Location: ../index.php");
 
 ?>

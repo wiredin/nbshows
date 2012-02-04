@@ -49,6 +49,7 @@ font-size:1em;
 
 }
 
+
 #calendar{
 margin-top:10px;
 }
@@ -179,5 +180,12 @@ padding:.3em;
 .band_num{
 font-size:1.1em;
 font-weight:bold;
-color:#696969
+color:#696969;
 }
+
+
+.err_txt{
+    color:#FF0000;
+    position:relative;
+}
+
