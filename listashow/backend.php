@@ -23,6 +23,7 @@ if (mysql_error()){
     $venue_id = $vn['venue_id'];
 }
 
+
 //Insert bands into `bands`
 $bandCount=0;
 while(!empty($_POST['band_name'][$bandCount])){
@@ -39,6 +40,9 @@ while(!empty($_POST['band_name'][$bandCount])){
     //fix caps of band names
     $band_name = ucwords(strtolower($escpMe->$_POST['band_name'][$bandCount]));
     
+    //create string of all band names (for good hash)
+    $band_string = $band_string.$band_name;
+   
     $query = "INSERT INTO `bands` (`band_name`,`website`,`location`) VALUES('$band_name',$band_website,'".$escpMe->$_POST['band_location'][$bandCount]."');";
     mysql_query($query);
     $band_id[$bandCount] = mysql_insert_id();
@@ -53,15 +57,17 @@ while(!empty($_POST['band_name'][$bandCount])){
 }
 
 //keep track of who is submitting the show for security purposes
-$query = "INSERT INTO `submitters` (`ip_address`,`submitter_email`) VALUES('".$_SERVER['REMOTE_ADDR']."','".$escpMe->$_POST['your_email']."');";
-
+$query = "INSERT INTO `submitters` (`ip_address`,`email`) VALUES('".$_SERVER['REMOTE_ADDR']."','".$escpMe->$_POST['your_email']."');";
 mysql_query($query);
 $submitter_id = mysql_insert_id();
 
 $date_time = sql_datetime($escpMe->$_POST['show_date'],$escpMe->$_POST['show_time']);
 
+$hash = sha1($band_string);
+//create hash for secure unique id of show 
+
 //Insert the show
-$query = "INSERT INTO `shows` (`venue_id`,`start_time`, `promoter_email`,`submiter_id`) VALUES('$venue_id','$date_time','".$escpMe->$_POST['promoter_email']."','".$submitter_id."');";
+$query = "INSERT INTO `shows` (`venue_id`,`start_time`,`submiter_id`,`hash`) VALUES('$venue_id','$date_time','".$submitter_id."','$hash');";
 mysql_query($query);
 $show_id = mysql_insert_id();
 
@@ -70,6 +76,8 @@ for($i=0; $i<$bandCount; $i++){
     $query = "INSERT INTO `show_bands` (`band_id`,`show_id`,`order`) VALUES('$band_id[$i]','$show_id','$i');";
     mysql_query($query);
 }
+
+
 
 header("Location: ../index.php");
 

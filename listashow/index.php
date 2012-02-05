@@ -155,7 +155,7 @@ require_once('../header.php');
 
 
 
-<div id="moreBands"></div>
+<div id="moreBands4"></div>
 <dt> </dt><dd><a onClick="add_band()" style="cursor:pointer; font-weight:bold; color: #3972C8; font-size:.9em;" >Add another band</a></dd>
 
 </dl>
@@ -164,19 +164,11 @@ require_once('../header.php');
 <dd><input type="text" value="<?php echo $_POST['your_email']; ?>" name="your_email" class="text_input">
 <div class="err_txt"><?php echo $err_your_email; ?></div>
 <p>
-Not published, it's for us incase we have a question.
+Not published, we will send you a link to edit the listing with.
 </p>
 </dd>
 
 
-
-<dt>Promoters Email</dt>
-<dd><input type="text" value="<?php echo $_POST['promoter_email']; ?>" name="promoter_email" class="text_input">
-<div class="err_txt"><?php echo $err_promoter_email; ?></div>
-<p>
-So people can ask about the show. Can be left blank
-</p>
-</dd>
 
 <dt></dt><dd style="margin-top:5px;"><input type="submit" name="submit" value="Submit"></dd>
 </dl>
