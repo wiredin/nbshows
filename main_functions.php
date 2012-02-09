@@ -42,10 +42,19 @@ function pretty_time($DateTime){
     }
 }
 
-function sql_datetime($prettyDate, $prettyTime){
-    $date_time = date_create_from_format('m/j/Y', $prettyDate);
+function us_date($DateTime){
+    return date_format(new DateTime($DateTime), 'm/d/Y');
+
+}
+
+function mil_time($DateTime){
+    return date_format(new DateTime($DateTime), 'H:i:s');
+}
+
+function sql_datetime($usDate, $usTime){
+    $date_time = date_create_from_format('m/j/Y', $usDate);
     $date_time = date_format($date_time, 'Y-m-d');
-    $date_time = $date_time.' '.$prettyTime;
+    $date_time = $date_time.' '.$usTime;
     return $date_time; 
 }
 
