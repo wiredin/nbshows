@@ -23,7 +23,6 @@ if (mysql_error()){
     $venue_id = $vn['venue_id'];
 }
 
-
 //Insert bands into `bands`
 $bandCount=0;
 while(!empty($_POST['band_name'][$bandCount])){
@@ -41,18 +40,14 @@ while(!empty($_POST['band_name'][$bandCount])){
     $band_name = ucwords(strtolower($escpMe->$_POST['band_name'][$bandCount]));
     
     //create string of all band names (for good hash)
-    $band_string = $band_string.$band_name;
+    if(empty($band_string))
+    $band_string = $band_name;
+    else
+    $band_string = $band_string.' // '.$band_name;
    
     $query = "INSERT INTO `bands` (`band_name`,`website`,`location`) VALUES('$band_name',$band_website,'".$escpMe->$_POST['band_location'][$bandCount]."');";
     mysql_query($query);
     $band_id[$bandCount] = mysql_insert_id();
-    //if band already exists
-    if(mysql_error()){
-         $query = "SELECT `band_id` FROM `bands` WHERE website='".$escpMe->$_POST['band_website'][$bandCount]."' AND band_name='$band_name';";
-         $results = mysql_query($query);
-         $bd = mysql_fetch_array($results);
-         $band_id[$bandCount] = $bd['band_id']; 
-    }
     $bandCount++;
 }
 
@@ -67,17 +62,16 @@ $hash = sha1($band_string);
 //create hash for secure unique id of show 
 
 //Insert the show
-$query = "INSERT INTO `shows` (`venue_id`,`start_time`,`submiter_id`,`hash`) VALUES('$venue_id','$date_time','".$submitter_id."','$hash');";
+$query = "INSERT INTO `shows` (`venue_id`,`start_time`,`submitter_id`,`hash`) VALUES('$venue_id','$date_time','".$submitter_id."','$hash');";
 mysql_query($query);
 $show_id = mysql_insert_id();
-
 //Show/Band relation table
 for($i=0; $i<$bandCount; $i++){
     $query = "INSERT INTO `show_bands` (`band_id`,`show_id`,`order`) VALUES('$band_id[$i]','$show_id','$i');";
     mysql_query($query);
 }
 
-
+require_once("send_link.php");
 
 header("Location: ../index.php");
 

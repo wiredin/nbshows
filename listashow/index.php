@@ -52,12 +52,6 @@ if($method === POST){
     }
 
 
-    if(!empty($_POST['promoter_email'])){
-        if(empty($inputs['promoter_email'])){
-            $err_promoter_email = "Invalid Email";
-            $err = 1;
-        }
-    } 
 
 if(!$err){
 require_once('backend.php');
@@ -67,11 +61,22 @@ die();
 }
 
 require_once('../header.php');
+
+
+//if there is POST data how many bands were submitted?
+if(count($_POST['band_name'])==0)
+$band_num = 3; //default
+else
+$band_num = count($_POST['band_name']);
+
 ?>
 
+
+<script type="text/javascript">
+var i=<?php echo $band_num; ?>;
+</script>
 <script type="text/javascript" src="add_bands.js"></script>
 <link rel="stylesheet" type="text/css" href="../stylesheets/calendarview.css" />
-
 
 <h3>List a show</h3>
 <div id="submit">
@@ -83,7 +88,7 @@ require_once('../header.php');
 <div class="err_txt"><?php echo $err_venue_name; ?></div>
 <p>Where is the show happening?</p></dd>
 
-<dt>Date:</dt>
+<dt>Date</dt>
 <dd><input name="show_date" class="date_input" id="selected_date" type="text" value="<?php if(empty($_POST['show_date'])){ echo get_date_now(); } else { echo $_POST['show_date']; } ?>">
 <select name="show_time"> 
 <option value="12:00:00">12:00 pm</option>
@@ -154,9 +159,26 @@ require_once('../header.php');
 <dd><input type="text" value="<?php echo $_POST['band_location'][2]; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
 
 
+<?php
+for($i=3; $i<$band_num; $i++){
+?>
+<dt class="band_num">Band #<?php echo $i+1; ?></dt>
+<dt>Name</dt>
+<dd><input type="text" value="<?php echo $_POST['band_name'][$i]; ?>" name="band_name[]" class="text_input"></dd>
 
-<div id="moreBands4"></div>
-<dt> </dt><dd><a onClick="add_band()" style="cursor:pointer; font-weight:bold; color: #3972C8; font-size:.9em;" >Add another band</a></dd>
+
+<dt>Website</dt>
+<dd><input type="text" value="<?php echo $_POST['band_website'][$i];  ?>" name="band_website[]" class="text_input"></dd>
+
+
+<dt>Location</dt>
+<dd><input type="text" value="<?php echo $_POST['band_location'][$i]; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
+<?php
+}
+?>
+<div id="moreBands<?php echo $band_num; ?>"></div>
+
+<dt> </dt><dd><a onClick="add_band()" style="cursor:pointer; font-weight:bold; color: #3972C8;" >Add another band</a></dd>
 
 </dl>
 <dl id="topForm">
@@ -170,7 +192,7 @@ Not published, we will send you a link to edit the listing with.
 
 
 
-<dt></dt><dd style="margin-top:5px;"><input type="submit" name="submit" value="Submit"></dd>
+<dt></dt><dd style="margin-top:5px;"><input class="submit_input"  type="submit" name="submit" value="Submit"></dd>
 </dl>
 </div>
 <div style="clear:both;"></div>
