@@ -1,5 +1,5 @@
 <?php
-
+$message = "We've made some changes! Now anyone can <a href='listashow'>list a show</a>.";
 require_once('main_functions.php');
 require_once('config_variables.php');
 require_once('header.php');

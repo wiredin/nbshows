@@ -47,6 +47,11 @@
 </head>
 <body>
     <div id="content">
+   <div id="headerMessage">
+    <?php
+        echo $message;
+    ?>
+    </div>
 
     <div id="header"><h2><a href="<?php echo $path; ?>"><img src="<?php echo $path ?>images/nbshows_evan_150.png" alt="NB Shows Logo"></a></h2><h4>The Unofficial NB Show Calendar</h4></div>
 

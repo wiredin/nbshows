@@ -186,3 +186,9 @@ font-size:110%;
     position:relative;
 }
 
+
+#headerMessage{
+text-align:left;
+background-color:#FFF1A8;
+width:380px;
+}
