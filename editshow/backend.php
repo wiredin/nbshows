@@ -65,7 +65,7 @@ $date_time = sql_datetime($escpMe->$_POST['show_date'],$escpMe->$_POST['show_tim
 
 
 //Update the show
-$query = "UPDATE `shows` SET `venue_id`='$venue_id',`start_time`='$date_time' WHERE `show_id`='$show_id';";
+$query = "UPDATE `shows` SET `venue_id`='$venue_id',`start_time`='$date_time', `canceled`='".$escpMe->$_POST['canceled']."' WHERE `show_id`='$show_id';";
 $results = mysql_query($query);
 for($i=0; $i<$bandCount; $i++){
     $query = "INSERT INTO `show_bands` (`band_id`,`show_id`,`order`) VALUES('$band_id[$i]','$show_id','$i');";

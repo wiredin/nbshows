@@ -74,7 +74,7 @@ if($method === POST){
 }else{
 
 
-    $query = "SELECT S.show_id, S.venue_id, venue_name, start_time, S.submitter_id, SBM.email , sb.band_id, group_concat(`band_name` separator ',') AS bands, group_concat(`website` separator ',') AS websites, group_concat(`order` separator ',') AS `order`, group_concat(`location` separator ',') AS locations  FROM `shows` S, `bands` B, `show_bands` sb, `venues` V , `submitters` SBM WHERE `hash`='".$escpMe->$_GET['h']."' AND  B.band_id=sb.band_id AND S.show_id=sb.show_id AND SBM.submitter_id=S.submitter_id AND V.venue_id=S.venue_id;";
+    $query = "SELECT S.show_id, S.venue_id, venue_name, start_time, S.submitter_id, SBM.email , sb.band_id, canceled, group_concat(`band_name` separator ',') AS bands, group_concat(`website` separator ',') AS websites, group_concat(`order` separator ',') AS `order`, group_concat(`location` separator ',') AS locations  FROM `shows` S, `bands` B, `show_bands` sb, `venues` V , `submitters` SBM WHERE `hash`='".$escpMe->$_GET['h']."' AND  B.band_id=sb.band_id AND S.show_id=sb.show_id AND SBM.submitter_id=S.submitter_id AND V.venue_id=S.venue_id;";
     $results = mysql_query($query);
     $show = mysql_fetch_array($results);
     $bands = get_bands_array($show); 
@@ -146,7 +146,17 @@ for($i=12; $i<23; $i++){
 </select>
 <div class="err_txt"><?php echo $err_show_date; ?></div>
 </dd>
+<dt><span style="color:red;"> Canceled</span></dt>
+<?php 
+    if($show['canceled']==1){
+        $cancelChecked = 'checked="checked"';
+     }
+
+?>
+<dd>Has this show been cancelled?  <input type="checkbox" name="canceled" id="canceled" <?php echo $cancelChecked; ?> value=1> Check the box if yes.</dd>
 </dl>
+
+
 <dl id="bandsForm">
 <dt class="band_num">Headlining Band</dt>
 <dt>Name</dt>
@@ -222,4 +232,4 @@ for($i=3; $i<count($bands); $i++){
 <?php
 
 require_once('../footer.php');
-?>
+
