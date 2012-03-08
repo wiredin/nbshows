@@ -85,10 +85,9 @@ function cmp_bands($a,$b){
      return ($a['lineup'] < $b['lineup']) ? -1 : 1;
 }
 
-function print_bands($bands){
+function print_bands($bands, $canceled){
 foreach($bands as $band){
-    
-    echo ($show['canceled']==1 ? '<del>' : '');
+    echo ($canceled==1 ? '<del>' : '');
     if($band['website']!='blank'){ ?>
 	<a target="_blank" href="http://<?php echo $band['website']; ?>"><?php echo $band['name'].'</a> ';
         if(($GLOBALS['location_abbv']!=$band['location'])&&(!empty($band['location'])))
@@ -106,7 +105,7 @@ foreach($bands as $band){
     echo ($c == count($bands) ? "": "//");    
     }
      
-   echo ($show['canceled']==1 ? '</del>' : '');
+   echo ($canceled==1 ? '</del>' : '');
 $c = 0;
 }
 

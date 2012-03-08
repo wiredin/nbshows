@@ -16,7 +16,7 @@ require_once('mysql_parse.php');
          ?>
         <div class="whatShow">
           <?php
-             print_bands($bands);
+             print_bands($bands,$show['canceled']);
            echo '-'.pretty_time($show['start_time']); ?> @ <?php echo $show['venue_name']; ?></div>
         <?php $prev_date=$show_date;
          }
