@@ -11,15 +11,15 @@ require_once('mysql_parse.php');
                   if($prev_date != $show_date){
         ?>
         <div class="whatDay"><?php echo $show_date; ?></div>
-        <?php }
-        $bands = get_bands_array($show);
-         ?>
+        <?php } ?>
         <div class="whatShow">
           <?php
+             $bands = get_bands_array($show);
              print_bands($bands,$show['canceled']);
            echo '-'.pretty_time($show['start_time']); ?> @ <?php echo $show['venue_name']; ?></div>
         <?php $prev_date=$show_date;
          }
+       
        ?>
     </div>
 <?php
