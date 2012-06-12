@@ -8,7 +8,7 @@ Author: Mike Weiss
 
 
 $path='../';
-$page = "listashow";
+$page = "editshow";
 require_once('../main_functions.php');
 require_once('../config_variables.php');
 
@@ -98,10 +98,6 @@ if((empty($_GET['h'])) || ($show['show_id']==NULL)){
 require_once('../header.php');
 ?>
 
-<script type="text/javascript">
-var i=<?php echo count($bands); ?>;
-</script>
-<script type="text/javascript" src="add_bands.js"></script>
 <link rel="stylesheet" type="text/css" href="../stylesheets/calendarview.css" />
 
 <h3>List a show</h3>
@@ -116,7 +112,7 @@ var i=<?php echo count($bands); ?>;
 <p>Where is the show happening?</p></dd>
 
 <dt>Date</dt>
-<dd><input name="show_date" class="date_input" id="selected_date" type="text" value="<?php  echo us_date($show['start_time']);  ?>">
+<dd><input name="show_date" class="date_input" id="datepicker" type="text" value="<?php  echo us_date($show['start_time']);  ?>">
 <select name="show_time"> 
 <?php 
 
@@ -154,11 +150,24 @@ for($i=12; $i<23; $i++){
 
 ?>
 <dd>Has this show been cancelled?  <input type="checkbox" name="canceled" id="canceled" <?php echo $cancelChecked; ?> value=1> Check the box if yes.</dd>
+<dt class="band_num" style="position:relative; top:10px; margin-bottom:-23px">Headlining Band</dt>
+<dt class="band_num" style="position:relative; top:134px; margin-bottom:-23px ">Band #2</dt>
+<dt class="band_num" style="position:relative; top:257px; margin-bottom:-23px ">Band #3</dt>
+<?php
+$top = 257;
+for($i=3; $i<count($bands); $i++){
+$top += 123;
+?>
+<dt class="band_num" style="position:relative; top:<?php echo $top; ?>px; margin-bottom:-23px ">Band #<?php echo $i+1; ?></dt>
+
+<?php
+}
+?>
+
 </dl>
-
-
-<dl id="bandsForm">
-<dt class="band_num">Headlining Band</dt>
+<ul id="sortable">
+<li class="ui-state-band-draggable">
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $bands[0]['name']; ?>" name="band_name[]" class="text_input"> 
 <div class="err_txt"><?php echo $err_band_name[0]; ?></div>
@@ -171,8 +180,13 @@ for($i=12; $i<23; $i++){
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $bands[0]['location']; ?>" name="band_location[]" class="location_input" maxlength="2"> (State) or "NB" for New Brunswick</dd>
+</dl>
+</li>
 
-<dt class="band_num">Band #2</dt>
+
+
+<li class="ui-state-band-draggable">
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $bands[1]['name']; ?>" name="band_name[]" class="text_input"></dd>
 
@@ -182,9 +196,11 @@ for($i=12; $i<23; $i++){
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $bands[1]['location']; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
+</dl>
+</li>
 
-
-<dt class="band_num">Band #3</dt>
+<li class="ui-state-band-draggable">
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $bands[2]['name']; ?>" name="band_name[]" class="text_input"></dd>
 
@@ -195,11 +211,14 @@ for($i=12; $i<23; $i++){
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $bands[2]['location']; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
-
+</dl>
+</li>
 <?php
 for($i=3; $i<count($bands); $i++){
 ?>
-<dt class="band_num">Band #<?php echo $i+1; ?></dt>
+<li class="ui-state-band-draggable">
+
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $bands[$i]['name']; ?>" name="band_name[]" class="text_input"></dd>
 
@@ -210,14 +229,18 @@ for($i=3; $i<count($bands); $i++){
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $bands[$i]['location']; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
+</dl>
+</li>
 <?php
 }
 ?>
+</ul>
+<dl class="bandsForm">
 <div id="moreBands<?php echo count($bands); ?>"></div>
-<dt> </dt><dd><a onClick="add_band();" style="cursor:pointer; font-weight:bold; color: #3972C8; " >Add another band</a></dd>
+<dt> </dt><dd style="margin-top:5px;"><a onClick="add_band(<?php echo $top; ?>);" style="cursor:pointer; font-weight:bold; color: #3972C8; " >Add another band</a></dd>
 
 </dl>
-<dl id="topForm">
+<dl class="bandsForm">
 
 
 

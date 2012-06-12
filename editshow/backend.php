@@ -54,10 +54,10 @@ for($i=0; $i<10; $i++){
         $query = "INSERT INTO `bands` (`band_name`,`website`,`location`) VALUES('$band_name',$band_website,'".$escpMe->$_POST['band_location'][$bandCount]."');";
          mysql_query($query);
         $band_id[$bandCount] = mysql_insert_id();
-        $bandCount++;
      
 
     }
+    $bandCount++;
 }
 
 //make a datetime

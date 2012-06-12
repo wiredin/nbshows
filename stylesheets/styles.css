@@ -131,7 +131,11 @@ margin:0px 0px 0px 0px;
 }
 
 
-#bandsForm dt{
+.bandsForm {
+margin:0;
+}
+
+.bandsForm dt{
 float:left;
 clear:left;
 width:150px;
@@ -141,7 +145,37 @@ color: #696969;
 }
 
 
-#bandsForm dd{
+#sortable { 
+list-style-type: none; 
+margin: 0; 
+padding: 0; 
+ }
+	
+#sortable li { 
+display:inline; 
+float:left;
+margin:35px 0 0 0;
+height:86px;
+}
+
+html>body #sortable li { }
+
+.ui-custom-state-highlight {
+width:557px;
+height:98px;
+border: 1px solid #fcd3a1;
+background: #fbf8ee url(images/ui-bg_glass_55_fbf8ee_1x400.png) 50% 50% repeat-x; 
+color: #444444;
+
+}
+
+.ui-state-band-draggable {
+border: 1px dashed #CCC;
+background: white;
+cursor:move;
+}
+
+.bandsForm dd{
 float:left;
 width:400px;
 text-align:left;
@@ -149,7 +183,7 @@ margin:0px 0px 1px 5px;
 padding:0px 0px 0px 0px;
 }
 
-#bandsForm p{
+.bandsForm p{
 margin:0px 0px 0px 0px;
 }
 
