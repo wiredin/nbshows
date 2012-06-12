@@ -1,4 +1,5 @@
 <?php
+$message = "CLIT Fest 2012 will be held in New Brunswick, July 13-15th. <a href='http://clitfestnb.tumblr.com/donate'> Find out more </a>";
 require_once('main_functions.php');
 require_once('config_variables.php');
 require_once('header.php');

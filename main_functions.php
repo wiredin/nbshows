@@ -8,7 +8,7 @@ function openDB(){
     if (!$link) {
 	die('Could not linkect: ' . mysql_error());
     }
-    $dbname = "cityshows";
+    $dbname = "cityshows_dev";
     mysql_select_db($dbname);
     return link;
 }
