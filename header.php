@@ -22,28 +22,42 @@
 
     </script>
 
-<!--list a show custom JS-->
-<?php if($page=="listashow"){ ?>
-<script type="text/javascript" src="<?php echo $path ?>javascripts/prototype.js"></script>
-<script type="text/javascript" src="<?php echo $path ?>javascripts/calendarview.js"></script>
- <script>
-      function setupCalendars() {
 
-        // Popup Calendar
-        Calendar.setup(
-          {
-            dateField: 'selected_date',
-            triggerElement: 'selected_date'
-          }
-        )
-      }
+<link type="text/css" href="<?php echo $path ?>javascripts/jquery/css/blitzer/jquery-ui-1.8.20.custom.css" rel="stylesheet">
+<script type="text/javascript" src="<?php echo $path ?>javascripts/jquery/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<?php echo $path ?>javascripts/jquery/js/jquery-ui-1.8.20.custom.min.js"></script>
 
-      Event.observe(window, 'load', function() { setupCalendars() })
-    </script>
+<!--edit a show and list a show custom JS-->
+<?php if($page=="editshow" || $page=="listashow"){ ?>
+
+
+<script type="text/javascript">
+var i=<?php echo (count($bands) > 3 ? count($bands) : 3 ); ?>;
+</script>
+<script type="text/javascript" src="<?php echo $path ?>javascripts/add_bands.js"></script>
+
+
+<script>
+	$(function() {
+		$( "#sortable" ).sortable({
+			placeholder: "ui-custom-state-highlight",
+                        cursor: 'move' 
+		});
+		$( "#sortable" ).disableSelection();
+
+	});
+
+       $(function() {
+		$( "#datepicker" ).datepicker();
+	});
+
+
+</script>
 <?php
 }
 ?>
-<!-- end list a show custom JS-->
+<!-- end edit-a-show and list-a-show custom JS-->
+
 </head>
 <body>
     <div id="content">

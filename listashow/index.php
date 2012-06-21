@@ -75,8 +75,6 @@ $band_num = count($_POST['band_name']);
 <script type="text/javascript">
 var i=<?php echo $band_num; ?>;
 </script>
-<script type="text/javascript" src="add_bands.js"></script>
-<link rel="stylesheet" type="text/css" href="../stylesheets/calendarview.css" />
 
 <h3>List a show</h3>
 <div id="submit">
@@ -89,7 +87,7 @@ var i=<?php echo $band_num; ?>;
 <p>Where is the show happening?</p></dd>
 
 <dt>Date</dt>
-<dd><input name="show_date" class="date_input" id="selected_date" type="text" value="<?php if(empty($_POST['show_date'])){ echo get_date_now(); } else { echo $_POST['show_date']; } ?>">
+<dd><input name="show_date" cname="show_date" class="date_input" id="datepicker" type="text" value="<?php if(empty($_POST['show_date'])){ echo get_date_now(); } else { echo $_POST['show_date']; } ?>">
 <select name="show_time"> 
 <option value="12:00:00">12:00 pm</option>
 <option value="12:30:00">12:30 pm</option>
@@ -118,9 +116,24 @@ var i=<?php echo $band_num; ?>;
 </select>
 <div class="err_txt"><?php echo $err_show_date; ?></div>
 </dd>
+<dt class="band_num" style="position:relative; top:10px; margin-bottom:-23px">Headlining Band</dt>
+<dt class="band_num" style="position:relative; top:134px; margin-bottom:-23px ">Band #2</dt>
+<dt class="band_num" style="position:relative; top:257px; margin-bottom:-23px ">Band #3</dt>
+<?php
+$top = 257;
+for($i=3; $i<$band_num; $i++){
+$top += 123;
+?>
+<dt class="band_num" style="position:relative; top:<?php echo $top; ?>px; margin-bottom:-23px ">Band #<?php echo $i+1; ?></dt>
+
+<?php
+}
+?>
+
 </dl>
-<dl id="bandsForm">
-<dt class="band_num">Headlining Band</dt>
+<ul id="sortable">
+<li class="ui-state-band-draggable">
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $_POST['band_name'][0]; ?>" name="band_name[]" class="text_input"> 
 <div class="err_txt"><?php echo $err_band_name[0]; ?></div>
@@ -134,7 +147,12 @@ var i=<?php echo $band_num; ?>;
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $_POST['band_location'][0]; ?>" name="band_location[]" class="location_input" maxlength="2"> (State) or "NB" for New Brunswick</dd>
 
-<dt class="band_num">Band #2</dt>
+</dl>
+</li>
+
+
+<li class="ui-state-band-draggable">
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $_POST['band_name'][1]; ?>" name="band_name[]" class="text_input"></dd>
 
@@ -144,9 +162,11 @@ var i=<?php echo $band_num; ?>;
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $_POST['band_location'][1]; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
+</dl>
+</li>
 
-
-<dt class="band_num">Band #3</dt>
+<li class="ui-state-band-draggable">
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $_POST['band_name'][2]; ?>" name="band_name[]" class="text_input"></dd>
 
@@ -157,12 +177,15 @@ var i=<?php echo $band_num; ?>;
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $_POST['band_location'][2]; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
-
+</dl>
+</li>
 
 <?php
 for($i=3; $i<$band_num; $i++){
 ?>
-<dt class="band_num">Band #<?php echo $i+1; ?></dt>
+<li class="ui-state-band-draggable">
+
+<dl class="bandsForm">
 <dt>Name</dt>
 <dd><input type="text" value="<?php echo $_POST['band_name'][$i]; ?>" name="band_name[]" class="text_input"></dd>
 
@@ -173,15 +196,19 @@ for($i=3; $i<$band_num; $i++){
 
 <dt>Location</dt>
 <dd><input type="text" value="<?php echo $_POST['band_location'][$i]; ?>" name="band_location[]" class="location_input" maxlength="2"></dd>
+</dl>
+</li>
 <?php
 }
 ?>
+</ul>
+<dl class="bandsForm">
 <div id="moreBands<?php echo $band_num; ?>"></div>
 
-<dt> </dt><dd><a onClick="add_band()" style="cursor:pointer; font-weight:bold; color: #3972C8;" >Add another band</a></dd>
+<dt> </dt><dd style="margin-top:5px;"><a onClick="add_band(<?php echo $top; ?>)" style="cursor:pointer; font-weight:bold; color: #3972C8;" >Add another band</a></dd>
 
 </dl>
-<dl id="topForm">
+<dl class="bandsForm">
 <dt>Your Email</dt>
 <dd><input type="text" value="<?php echo $_POST['your_email']; ?>" name="your_email" class="text_input">
 <div class="err_txt"><?php echo $err_your_email; ?></div>
