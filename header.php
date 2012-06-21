@@ -22,19 +22,13 @@
 
     </script>
 
-<!--list a show custom JS-->
-<?php if($page=="listashow"){ ?>
-<?php
-}
-?>
-<!-- end list a show custom JS-->
 
 <link type="text/css" href="<?php echo $path ?>javascripts/jquery/css/blitzer/jquery-ui-1.8.20.custom.css" rel="stylesheet">
 <script type="text/javascript" src="<?php echo $path ?>javascripts/jquery/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<?php echo $path ?>javascripts/jquery/js/jquery-ui-1.8.20.custom.min.js"></script>
 
-<!--edit a show custom JS-->
-<?php if($page=="editshow"){ ?>
+<!--edit a show and list a show custom JS-->
+<?php if($page=="editshow" || $page=="listashow"){ ?>
 
 
 <script type="text/javascript">
@@ -62,7 +56,7 @@ var i=<?php echo (count($bands) > 3 ? count($bands) : 3 ); ?>;
 <?php
 }
 ?>
-<!-- end edit a show custom JS-->
+<!-- end edit-a-show and list-a-show custom JS-->
 
 </head>
 <body>

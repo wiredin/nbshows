@@ -25,15 +25,16 @@ if (mysql_error()){
 
 //Insert bands into `bands`
 $bandCount=0;
-while(!empty($_POST['band_name'][$bandCount])){
-    if(empty($_POST['band_website'][$bandCount])|| $_POST['band_website'][$bandCount]==' '){
-        $band_website = "'blank'";
-    }else{
+for($i=0; $i<10; $i++){
+   if(!empty($_POST['band_name'][$bandCount])){
+	if(empty($_POST['band_website'][$bandCount])|| $_POST['band_website'][$bandCount]==' '){
+            $band_website = "'blank'";
+        }else{
 
-        $band_website = "'".$escpMe->$_POST['band_website'][$bandCount]."'";
-        $band_website = remove_http($band_website); //remove http if entered
+            $band_website = "'".$escpMe->$_POST['band_website'][$bandCount]."'";
+            $band_website = remove_http($band_website); //remove http if entered
                
-    }
+        }
 
 
     //fix caps of band names
@@ -48,7 +49,8 @@ while(!empty($_POST['band_name'][$bandCount])){
     $query = "INSERT INTO `bands` (`band_name`,`website`,`location`) VALUES('$band_name',$band_website,'".$escpMe->$_POST['band_location'][$bandCount]."');";
     mysql_query($query);
     $band_id[$bandCount] = mysql_insert_id();
-    $bandCount++;
+   } 
+   $bandCount++;
 }
 
 //keep track of who is submitting the show for security purposes
