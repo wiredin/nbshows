@@ -231,3 +231,8 @@ text-align:left;
 background-color:#FFF1A8;
 padding:0 7px 0 3px;
 }
+
+.footer-icon{
+position:relative;
+top:4px;
+}
