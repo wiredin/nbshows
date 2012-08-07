@@ -60,7 +60,7 @@ var i=<?php echo (count($bands) > 3 ? count($bands) : 3 ); ?>;
 </head>
 <body>
     <div id="content">
-   <div class="headerMessage"><span class="headerMessageSpan">
+   <div class="headerMessage" style="display:none;"><span class="headerMessageSpan">
     <?php
         echo $message;
     ?>
