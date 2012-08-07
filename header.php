@@ -43,7 +43,6 @@ var i=<?php echo (count($bands) > 3 ? count($bands) : 3 ); ?>;
 			placeholder: "ui-custom-state-highlight",
                         cursor: 'move' 
 		});
-		$( "#sortable" ).disableSelection();
 
 	});
 
